@@ -9,9 +9,10 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
+  const [selectedMeters, setSelectedMeters] = useState(100);
 
   const product = products.find(p => p.id === parseInt(id));
-  const isInCart = cart.some(item => item.id === parseInt(id));
+  const isInCart = cart.some(item => item.id === parseInt(id) || String(item.id).startsWith(`${id}-`));
 
   if (!product) {
     return (
@@ -33,8 +34,20 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
     .slice(0, 4);
 
   const handleAddToCart = () => {
-    for (let i = 0; i < qty; i++) {
-      addToCart(product);
+    if (product.id === 19) {
+      // Camera Cable - add with meters info, unique ID for each meter variant
+      const cableProduct = {
+        ...product,
+        id: `19-${selectedMeters}`,
+        name: `${product.name} (${selectedMeters} meters)`,
+        price: product.price * selectedMeters,
+        mrp: product.mrp * selectedMeters
+      };
+      addToCart(cableProduct);
+    } else {
+      for (let i = 0; i < qty; i++) {
+        addToCart(product);
+      }
     }
     navigate('/cart');
   };
@@ -48,7 +61,7 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
         <div className="container">
           <Link to="/">Home</Link>
           <span>›</span>
-          <Link to="/#products">{product.category === 'typeA' ? 'Type A' : product.category === 'typeB' ? 'Type B' : 'Type C'}</Link>
+          <Link to="/#products">{product.category === 'typeA' ? 'Lock and Nuts' : product.category === 'typeB' ? 'Camera Set' : 'Motor Spare'}</Link>
           <span>›</span>
           <span>{product.subcategory}</span>
           <span>›</span>
@@ -116,7 +129,7 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
           {/* Right - Product Info */}
           <div className="product-detail-info">
             <span className="product-detail-category">
-              {product.category === 'typeA' ? 'Type A' : product.category === 'typeB' ? 'Type B' : 'Type C'} • {product.subcategory}
+              {product.category === 'typeA' ? 'Lock and Nuts' : product.category === 'typeB' ? 'Camera Set' : 'Motor Spare'} • {product.subcategory}
             </span>
             <h1>{product.name}</h1>
 
@@ -138,26 +151,26 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
               <span className="discount-badge">{discount}% off</span>
             </div>
 
-            <div className="offers-section">
-              <h4>Available Offers</h4>
-              <ul>
-                <li><span className="offer-tag">Bank Offer</span> 10% off on SBI Credit Card</li>
-                <li><span className="offer-tag">Special</span> Get extra 5% off on orders above ₹2000</li>
-                <li><span className="offer-tag">Partner</span> Free delivery on first order</li>
-              </ul>
-            </div>
-
             <p className="product-detail-desc">{product.desc}</p>
 
-            <div className="product-features">
-              <h4>Highlights</h4>
-              <ul>
-                <li>✓ Premium quality material</li>
-                <li>✓ Perfect fit guarantee</li>
-                <li>✓ 6 months warranty</li>
-                <li>✓ Easy installation</li>
-              </ul>
-            </div>
+            {/* Meter selector for Camera Cable */}
+            {product.id === 19 && (
+              <div className="meter-selector">
+                <label>Select Meters:</label>
+                <select
+                  value={selectedMeters}
+                  onChange={(e) => setSelectedMeters(Number(e.target.value))}
+                  className="meter-dropdown"
+                >
+                  <option value={100}>100 meters - ₹{(product.price * 100).toLocaleString()}</option>
+                  <option value={150}>150 meters - ₹{(product.price * 150).toLocaleString()}</option>
+                  <option value={200}>200 meters - ₹{(product.price * 200).toLocaleString()}</option>
+                  <option value={300}>300 meters - ₹{(product.price * 300).toLocaleString()}</option>
+                  <option value={400}>400 meters - ₹{(product.price * 400).toLocaleString()}</option>
+                </select>
+                <p className="meter-info">Price: ₹{product.price} per meter</p>
+              </div>
+            )}
 
             {product.soldOut ? (
               <div className="sold-out-section">
@@ -211,15 +224,15 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
               <div className="guarantee">
                 <span>🚚</span>
                 <div>
-                  <strong>Free Delivery</strong>
-                  <p>Orders above ₹500</p>
+                  <strong>Fast Delivery</strong>
+                  <p>Average 2 days</p>
                 </div>
               </div>
               <div className="guarantee">
                 <span>🔄</span>
                 <div>
-                  <strong>7 Day Returns</strong>
-                  <p>Easy return policy</p>
+                  <strong>No Return</strong>
+                  <p>Only replacement available</p>
                 </div>
               </div>
               <div className="guarantee">
@@ -230,10 +243,10 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
                 </div>
               </div>
               <div className="guarantee">
-                <span>💳</span>
+                <span>💰</span>
                 <div>
-                  <strong>Secure Payment</strong>
-                  <p>100% secure</p>
+                  <strong>5% Off</strong>
+                  <p>Orders above ₹50,000</p>
                 </div>
               </div>
             </div>

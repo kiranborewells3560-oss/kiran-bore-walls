@@ -4,14 +4,25 @@ import { Icons, ProductImage } from '../components/Icons';
 
 function Cart({ cart, updateQty, removeFromCart, clearCart }) {
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    pincode: ''
+  const [formData, setFormData] = useState(() => {
+    const saved = localStorage.getItem('customerDetails');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return {
+      name: '',
+      phone: '',
+      address: '',
+      pincode: ''
+    };
   });
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const updateFormData = (newData) => {
+    setFormData(newData);
+    localStorage.setItem('customerDetails', JSON.stringify(newData));
+  };
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -45,7 +56,7 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
             <div className="success-icon">✓</div>
             <h2>Order Placed Successfully!</h2>
             <p>Thank you for your order.</p>
-            <p>We will contact you on <strong>{formData.phone}</strong> for confirmation.</p>
+            <p>We will connect with you within 1 day using WhatsApp or we will call you.</p>
             <Link to="/" className="btn btn-primary">Continue Shopping</Link>
           </div>
         </div>
@@ -162,7 +173,7 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
                       name="entry.1065046570"
                       placeholder="Enter your name"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => updateFormData({...formData, name: e.target.value})}
                       required
                     />
                   </div>
@@ -173,7 +184,7 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
                       name="entry.1166974658"
                       placeholder="10-digit mobile number"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => updateFormData({...formData, phone: e.target.value})}
                       pattern="[0-9]{10}"
                       required
                     />
@@ -181,10 +192,10 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
                   <div className="form-group">
                     <label>Delivery Address</label>
                     <textarea
-                      name="entry.701881328"
+                      name="entry.839337160"
                       placeholder="Full address with landmark"
                       value={formData.address}
-                      onChange={(e) => setFormData({...formData, address: e.target.value})}
+                      onChange={(e) => updateFormData({...formData, address: e.target.value})}
                       required
                     />
                   </div>
@@ -192,10 +203,10 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
                     <label>PIN Code</label>
                     <input
                       type="text"
-                      name="entry.839337160"
+                      name="entry.701881328"
                       placeholder="6-digit PIN code"
                       value={formData.pincode}
-                      onChange={(e) => setFormData({...formData, pincode: e.target.value})}
+                      onChange={(e) => updateFormData({...formData, pincode: e.target.value})}
                       pattern="[0-9]{6}"
                       required
                     />

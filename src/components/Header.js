@@ -32,6 +32,7 @@ function Header({ cartCount, search, setSearch }) {
       <div className="header-top">
         <div className="nav">
           <Link to="/" className="logo">
+            <img src="/Logo.png" alt="Kiran Bore Walls" className="logo-img" />
             <span className="logo-text">Kiran<span>BoreWalls</span></span>
           </Link>
 
@@ -73,10 +74,6 @@ function Header({ cartCount, search, setSearch }) {
           </form>
 
           <div className="header-actions">
-            <div className="header-link">
-              <span className="header-link-big">Account & Orders</span>
-            </div>
-
             <button className="cart-btn" onClick={() => navigate('/cart')}>
               <div className="cart-icon-wrap">
                 <Icons.Cart />

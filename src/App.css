@@ -7,8 +7,8 @@
 :root {
   --primary: #0f0f0f;
   --primary-light: #212121;
-  --accent: #ff0000;
-  --accent-hover: #cc0000;
+  --accent: #F1801D;
+  --accent-hover: #d97018;
   --bg: #0f0f0f;
   --bg-light: #212121;
   --bg-hover: #272727;
@@ -18,8 +18,9 @@
   --text-light: #aaaaaa;
   --text-muted: #717171;
   --border: #303030;
-  --green: #2ba640;
-  --orange: #ff9000;
+  --green: #F1801D;
+  --blue: #008CD4;
+  --orange: #F1801D;
   --red: #ff0000;
   --shadow: none;
   --shadow-md: none;
@@ -33,6 +34,34 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  color: #fff;
 }
 
 .container {
@@ -74,6 +103,13 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .logo-text {
@@ -343,11 +379,45 @@ body {
 }
 
 /* ==================== */
+/* TRUST BANNER */
+/* ==================== */
+
+.trust-banner {
+  background: linear-gradient(90deg, #F1801D 0%, #008CD4 100%);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 72px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.trust-item span {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .trust-banner {
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    justify-content: center;
+  }
+}
+
+/* ==================== */
 /* HERO / BANNER */
 /* ==================== */
 
 .hero {
-  padding: 160px 24px 80px;
+  padding: 80px 24px;
   background:
     linear-gradient(180deg, rgba(15, 15, 15, 0.7) 0%, rgba(15, 15, 15, 0.95) 100%),
     url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80') center/cover no-repeat;
@@ -367,18 +437,30 @@ body {
   margin: 0 auto;
 }
 
+.hero-badge {
+  display: inline-block;
+  background: rgba(241, 128, 29, 0.2);
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
 .hero-content h1 {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: #fff;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
 }
 
 .hero-content p {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-light);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   font-weight: 400;
 }
 
@@ -441,14 +523,32 @@ body {
 }
 
 .hero-features .feature span {
-  color: var(--green);
+  color: var(--orange);
   font-size: 18px;
   font-weight: 700;
 }
 
 .hero-cta {
-  margin-top: 24px;
-  text-align: center;
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.hero-cta .btn-primary {
+  padding: 14px 32px;
+  font-size: 15px;
+  background: var(--orange);
+  color: #fff;
+}
+
+.hero-cta .btn-primary:hover {
+  background: #d97018;
+}
+
+.hero-cta .btn-outline {
+  padding: 14px 32px;
+  font-size: 15px;
 }
 
 /* ==================== */
@@ -519,21 +619,23 @@ body {
 }
 
 .product-card {
-  background: transparent;
+  background: var(--bg-light);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: all 0.2s;
+  transition: all 0.3s;
   position: relative;
-  border: none;
+  border: 1px solid var(--border);
   cursor: pointer;
 }
 
 .product-card:hover {
-  transform: none;
+  transform: translateY(-4px);
+  border-color: var(--text-muted);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .product-card:hover .product-image {
-  border-radius: 0;
+  background: var(--bg-hover);
 }
 
 .product-badge {
@@ -551,15 +653,15 @@ body {
 
 .product-image {
   height: 180px;
-  background: var(--bg-light);
+  background: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   padding: 16px;
   position: relative;
-  border-radius: var(--radius);
-  transition: border-radius 0.2s;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transition: all 0.3s;
 }
 
 .product-emoji {
@@ -574,7 +676,7 @@ body {
 }
 
 .product-info {
-  padding: 12px 4px;
+  padding: 16px;
 }
 
 .product-name-link {
@@ -648,7 +750,7 @@ body {
 .product-price .discount {
   font-size: 12px;
   font-weight: 500;
-  color: var(--green);
+  color: var(--orange);
   background: transparent;
   padding: 0;
 }
@@ -901,14 +1003,112 @@ body {
 
 .footer {
   background: var(--bg-light);
-  padding: 24px 0;
-  text-align: center;
+  padding: 48px 0 24px;
   border-top: 1px solid var(--border);
 }
 
-.footer p {
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 32px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 300px;
+}
+
+.footer-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.footer-brand h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-section h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.footer-section a,
+.footer-section p {
+  display: block;
+  font-size: 13px;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
   font-size: 12px;
   color: var(--text-muted);
+}
+
+.footer-trust {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-trust span {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-trust {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 /* ==================== */
@@ -1149,11 +1349,11 @@ body {
 }
 
 .summary-row.discount span:last-child {
-  color: var(--green);
+  color: var(--orange);
 }
 
 .summary-row .free {
-  color: var(--green);
+  color: var(--orange);
   font-weight: 600;
 }
 
@@ -1171,7 +1371,7 @@ body {
 
 .summary-savings {
   background: var(--bg-hover);
-  color: var(--green);
+  color: var(--orange);
   padding: 12px;
   border-radius: 8px;
   font-size: 13px;
@@ -1281,7 +1481,7 @@ body {
 .success-icon {
   width: 80px;
   height: 80px;
-  background: var(--green);
+  background: var(--orange);
   color: #fff;
   font-size: 40px;
   border-radius: 50%;
@@ -1561,6 +1761,44 @@ body {
   background: #3d3d3d;
 }
 
+/* Meter Selector for Camera Cable */
+.meter-selector {
+  background: var(--bg-light);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+
+.meter-selector label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.meter-dropdown {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+}
+
+.meter-dropdown:focus {
+  border-color: var(--text-light);
+}
+
+.meter-info {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
 .offers-section {
   background: var(--bg-light);
   padding: 16px;
@@ -1590,7 +1828,7 @@ body {
 }
 
 .offer-tag {
-  background: var(--green);
+  background: var(--orange);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -1624,7 +1862,7 @@ body {
 .discount-badge {
   font-size: 13px;
   font-weight: 500;
-  color: var(--green);
+  color: var(--orange);
   background: transparent;
   padding: 0;
 }
@@ -1669,7 +1907,7 @@ body {
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--green);
+  color: var(--orange);
   font-weight: 700;
 }
 
@@ -1948,7 +2186,7 @@ body {
 .related-discount {
   font-size: 12px !important;
   font-weight: 600 !important;
-  color: var(--green) !important;
+  color: var(--orange) !important;
 }
 
 /* ==================== */

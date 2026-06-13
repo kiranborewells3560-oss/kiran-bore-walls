@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icons, ProductImage } from '../components/Icons';
 import { products } from '../data/products';
 
 function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
-  const isInCart = (id) => cart.some(item => item.id === id);
+  const navigate = useNavigate();
+  const isInCart = (id) => cart.some(item => item.id === id || String(item.id).startsWith(`${id}-`));
 
   const filteredProducts = products.filter(p => {
     const matchesFilter = filter === 'all' || p.category === filter;
@@ -15,20 +16,41 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
 
   return (
     <>
+      {/* Trust Banner */}
+      <div className="trust-banner">
+        <div className="trust-item">
+          <span>🔒</span> Secure Payment
+        </div>
+        <div className="trust-item">
+          <span>✓</span> 100% Genuine Products
+        </div>
+        <div className="trust-item">
+          <span>🚚</span> Fast 2-Day Delivery
+        </div>
+        <div className="trust-item">
+          <span>📞</span> 24/7 Support
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="hero" id="home">
         <div className="hero-content">
+          <div className="hero-badge">Trusted by 10,000+ Customers</div>
           <h1>Kiran Bore Walls</h1>
-          <p>Premium bore wall parts & tools at the best prices</p>
+          <p>Karnataka's leading supplier of premium bore wall parts & tools</p>
           <div className="hero-features">
             <div className="feature">
               <span>✓</span> Genuine Parts
             </div>
             <div className="feature">
-              <span>✓</span> Fast Delivery
+              <span>✓</span> Best Prices
+            </div>
+            <div className="feature">
+              <span>✓</span> Expert Support
             </div>
           </div>
           <div className="hero-cta">
+            <a href="#products" className="btn btn-primary">Shop Now</a>
             <a href="#contact" className="btn btn-outline">Contact Us</a>
           </div>
         </div>
@@ -53,19 +75,19 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
               className={`filter-btn ${filter === 'typeA' ? 'active' : ''}`}
               onClick={() => setFilter('typeA')}
             >
-              Type A
+              Lock and Nuts
             </button>
             <button
               className={`filter-btn ${filter === 'typeB' ? 'active' : ''}`}
               onClick={() => setFilter('typeB')}
             >
-              Type B
+              Camera Set
             </button>
             <button
               className={`filter-btn ${filter === 'typeC' ? 'active' : ''}`}
               onClick={() => setFilter('typeC')}
             >
-              Type C
+              Motor Spare
             </button>
           </div>
 
@@ -105,6 +127,10 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                         Remove
                       </button>
                     </div>
+                  ) : product.id === 19 ? (
+                    <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
+                      Select Meters
+                    </button>
                   ) : (
                     <button className="add-btn" onClick={() => addToCart(product)}>
                       Add to Cart
@@ -136,28 +162,28 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                   <span className="feature-icon">🚚</span>
                   <div>
                     <h4>Fast Delivery</h4>
-                    <p>Same day dispatch on orders before 2PM</p>
+                    <p>Average 2 days delivery</p>
                   </div>
                 </div>
                 <div className="about-feature">
                   <span className="feature-icon">💰</span>
                   <div>
                     <h4>Best Prices</h4>
-                    <p>Competitive prices with great discounts</p>
+                    <p>Above ₹50,000: Get 5% off</p>
                   </div>
                 </div>
                 <div className="about-feature">
                   <span className="feature-icon">🔄</span>
                   <div>
-                    <h4>Easy Returns</h4>
-                    <p>7-day hassle-free return policy</p>
+                    <h4>No Return</h4>
+                    <p>Only replacement available</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="about-stats">
               <div className="stat">
-                <span className="stat-number">5000+</span>
+                <span className="stat-number">1000+</span>
                 <span className="stat-label">Products</span>
               </div>
               <div className="stat">
@@ -165,8 +191,8 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                 <span className="stat-label">Customers</span>
               </div>
               <div className="stat">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Brands</span>
+                <span className="stat-number">✓</span>
+                <span className="stat-label">Trusted Company</span>
               </div>
             </div>
           </div>
@@ -185,14 +211,15 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
               <Icons.Phone />
               <div>
                 <h4>Phone</h4>
-                <p>+91 98765 43210</p>
+                <p>+91 78290 49303</p>
+                <p>+91 72041 01558</p>
               </div>
             </div>
             <div className="contact-item">
               <Icons.Mail />
               <div>
                 <h4>Email</h4>
-                <p>info@kiranborewalls.com</p>
+                <p>kiranborewells3560@gmail.com</p>
               </div>
             </div>
             <div className="contact-item">
