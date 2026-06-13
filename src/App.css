@@ -407,8 +407,19 @@ body {
 @media (max-width: 768px) {
   .trust-banner {
     flex-wrap: wrap;
-    gap: 16px 32px;
+    gap: 10px 20px;
     justify-content: center;
+    padding: 10px 16px;
+    margin-top: 60px;
+  }
+
+  .trust-item {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .trust-item span {
+    font-size: 14px;
   }
 }
 
@@ -1089,14 +1100,27 @@ body {
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 32px 0 24px;
+  }
+
   .footer-content {
     flex-direction: column;
     gap: 32px;
   }
 
+  .footer-brand {
+    max-width: 100%;
+  }
+
   .footer-links {
-    flex-wrap: wrap;
-    gap: 32px;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .footer-section {
+    width: 100%;
   }
 
   .footer-bottom {
@@ -1108,6 +1132,7 @@ body {
   .footer-trust {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 16px;
   }
 }
 
@@ -2237,15 +2262,32 @@ body {
   .nav {
     flex-wrap: wrap;
     gap: 12px;
+    padding: 0 16px;
   }
 
   .search-bar {
+    position: static;
+    transform: none;
     order: 3;
     width: 100%;
     max-width: none;
+    margin-top: 12px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-img {
+    width: 36px;
+    height: 36px;
   }
 
   .header-link {
+    display: none;
+  }
+
+  .cart-text {
     display: none;
   }
 
@@ -2257,20 +2299,40 @@ body {
   }
 
   .hero {
-    padding: 160px 20px 80px;
+    padding: 60px 20px;
   }
 
   .hero-content h1 {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .hero-content p {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    padding: 6px 12px;
   }
 
   .hero-features {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .hero-features .feature {
+    font-size: 14px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-cta .btn-primary,
+  .hero-cta .btn-outline {
+    width: 100%;
+    padding: 12px 24px;
   }
 
   .cart-layout {
@@ -2284,13 +2346,22 @@ body {
 
   .contact-grid {
     flex-direction: column;
-    align-items: center;
-    gap: 32px;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .contact-item {
+    width: 100%;
   }
 
   .product-guarantees {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 16px;
+  }
+
+  .guarantee {
+    flex: 0 0 45%;
   }
 
   .action-buttons {
@@ -2316,8 +2387,25 @@ body {
     padding-bottom: 8px;
   }
 
+  .filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   .section-header h2 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .section-header {
+    text-align: center;
+  }
+
+  .cart-page {
+    padding-top: 120px;
+  }
+
+  .product-detail-page {
+    padding-top: 120px;
   }
 }
 
