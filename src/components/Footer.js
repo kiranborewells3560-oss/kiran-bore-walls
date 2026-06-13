@@ -7,10 +7,10 @@ function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <img src="/Logo.png" alt="Kiran Bore Walls" className="footer-logo" />
+            <img src="/Logo.png" alt="Kiran Bore Wells" className="footer-logo" />
             <div>
-              <h3>Kiran Bore Walls</h3>
-              <p>Your trusted partner for quality bore wall parts</p>
+              <h3>Kiran Bore Wells</h3>
+              <p>Your trusted partner for quality bore well parts</p>
             </div>
           </div>
 
@@ -40,7 +40,7 @@ function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2024 Kiran Bore Walls. All rights reserved.</p>
+          <p>&copy; 2024 Kiran Bore Wells. All rights reserved.</p>
           <div className="footer-trust">
             <span>🔒 Secure Payments</span>
             <span>✓ Genuine Products</span>

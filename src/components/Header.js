@@ -32,8 +32,8 @@ function Header({ cartCount, search, setSearch }) {
       <div className="header-top">
         <div className="nav">
           <Link to="/" className="logo">
-            <img src="/Logo.png" alt="Kiran Bore Walls" className="logo-img" />
-            <span className="logo-text">Kiran<span>BoreWalls</span></span>
+            <img src="/Logo.png" alt="Kiran Bore Wells" className="logo-img" />
+            <span className="logo-text">Kiran<span>BoreWells</span></span>
           </Link>
 
           <form className="search-bar" onSubmit={handleSearchSubmit}>

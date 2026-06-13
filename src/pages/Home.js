@@ -36,8 +36,8 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
       <section className="hero" id="home">
         <div className="hero-content">
           <div className="hero-badge">Trusted by 10,000+ Customers</div>
-          <h1>Kiran Bore Walls</h1>
-          <p>Karnataka's leading supplier of premium bore wall parts & tools</p>
+          <h1>Kiran Bore Wells</h1>
+          <p>Karnataka's leading supplier of premium bore well parts & tools</p>
           <div className="hero-features">
             <div className="feature">
               <span>✓</span> Genuine Parts
@@ -149,7 +149,7 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
           <div className="about-grid">
             <div className="about-content">
               <h2>Why Choose Us</h2>
-              <p>We are your trusted partner for quality bore wall parts and tools. With years of experience in the industry, we provide genuine parts for all types of bore wall pumps.</p>
+              <p>We are your trusted partner for quality bore well parts and tools. With years of experience in the industry, we provide genuine parts for all types of bore well pumps.</p>
               <div className="about-features">
                 <div className="about-feature">
                   <span className="feature-icon">🏆</span>
