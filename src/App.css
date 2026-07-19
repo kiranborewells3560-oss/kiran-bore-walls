@@ -1382,6 +1382,18 @@ body {
   font-weight: 600;
 }
 
+.summary-row .delivery-note {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.delivery-info {
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 8px 0 16px;
+  line-height: 1.5;
+}
+
 .summary-divider {
   height: 1px;
   background: var(--border);
@@ -1822,6 +1834,12 @@ body {
   font-size: 13px;
   color: var(--text-light);
   margin-top: 8px;
+}
+
+.gst-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
 }
 
 .offers-section {

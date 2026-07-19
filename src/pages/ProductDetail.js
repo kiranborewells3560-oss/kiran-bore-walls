@@ -33,6 +33,15 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
     .filter(p => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
+  const cableFullSetPrices = {
+    100: 17500,
+    150: 20000,
+    200: 22800,
+    250: 25600,
+    300: 28500,
+    400: 33800
+  };
+
   const handleAddToCart = () => {
     if (product.id === 19) {
       // Camera Cable - add with meters info, unique ID for each meter variant
@@ -44,6 +53,16 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
         mrp: product.mrp * selectedMeters
       };
       addToCart(cableProduct);
+    } else if (product.id === 35) {
+      // Cable Wire Full Set - fixed prices per meter option
+      const cableSetProduct = {
+        ...product,
+        id: `35-${selectedMeters}`,
+        name: `Cable Wire Full Set (${selectedMeters} mtr)`,
+        price: cableFullSetPrices[selectedMeters],
+        mrp: Math.round(cableFullSetPrices[selectedMeters] * 1.1)
+      };
+      addToCart(cableSetProduct);
     } else {
       for (let i = 0; i < qty; i++) {
         addToCart(product);
@@ -150,6 +169,7 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
               <span className="original-price">₹{product.mrp.toLocaleString()}</span>
               <span className="discount-badge">{discount}% off</span>
             </div>
+            <p className="gst-info">+ 18% GST applicable</p>
 
             <p className="product-detail-desc">{product.desc}</p>
 
@@ -169,6 +189,25 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
                   <option value={400}>400 meters - ₹{(product.price * 400).toLocaleString()}</option>
                 </select>
                 <p className="meter-info">Price: ₹{product.price} per meter</p>
+              </div>
+            )}
+
+            {/* Meter selector for Cable Wire Full Set */}
+            {product.id === 35 && (
+              <div className="meter-selector">
+                <label>Select Package:</label>
+                <select
+                  value={selectedMeters}
+                  onChange={(e) => setSelectedMeters(Number(e.target.value))}
+                  className="meter-dropdown"
+                >
+                  <option value={100}>100 mtr cable with full set - ₹17,500</option>
+                  <option value={150}>150 mtr cable with full set - ₹20,000</option>
+                  <option value={200}>200 mtr cable with full set - ₹22,800</option>
+                  <option value={250}>250 mtr cable with full set - ₹25,600</option>
+                  <option value={300}>300 mtr cable with full set - ₹28,500</option>
+                  <option value={400}>400 mtr cable with full set - ₹33,800</option>
+                </select>
               </div>
             )}
 

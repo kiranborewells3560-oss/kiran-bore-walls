@@ -131,6 +131,10 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                     <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
                       Select Meters
                     </button>
+                  ) : product.id === 35 ? (
+                    <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
+                      Select Package
+                    </button>
                   ) : (
                     <button className="add-btn" onClick={() => addToCart(product)}>
                       Add to Cart
@@ -227,7 +231,7 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
               <div>
                 <h4>Address</h4>
                 <p>Kunchanoor Road, Jamkhandi, Karnataka 587301</p>
-                <a href="https://maps.app.goo.gl/qpaPfWNdbfGjXd1i9" target="_blank" rel="noopener noreferrer" className="map-link">View on Google Maps</a>
+                <a href="https://www.google.com/maps?q=16.506346,75.304366" target="_blank" rel="noopener noreferrer" className="map-link">View on Google Maps</a>
               </div>
             </div>
           </div>

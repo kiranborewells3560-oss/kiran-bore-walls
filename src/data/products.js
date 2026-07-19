@@ -296,6 +296,20 @@ export const products = [
     video: null,
     soldOut: false
   },
+  {
+    id: 35,
+    name: 'Cable Wire Full Set',
+    category: 'typeB',
+    subcategory: 'Cables',
+    price: 17500,
+    mrp: 19000,
+    image: '/images/B10.jpg',
+    desc: 'Complete cable wire set with all accessories',
+    rating: 4.8,
+    images: ['/images/B10.jpg'],
+    video: null,
+    soldOut: false
+  },
 
   // C Series - Motor Parts, Collars, Clamps, Tools
   {

@@ -24,9 +24,11 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
     localStorage.setItem('customerDetails', JSON.stringify(newData));
   };
 
-  const cartTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const cartSubtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const savings = cart.reduce((sum, item) => sum + (item.mrp - item.price) * item.qty, 0);
+  const gstAmount = Math.round(cartSubtotal * 0.18);
+  const cartTotal = cartSubtotal + gstAmount;
 
   const productDetails = cart.map(item => item.name).join(' || ');
   const quantities = cart.map(item => item.qty).join(' || ');
@@ -124,19 +126,28 @@ function Cart({ cart, updateQty, removeFromCart, clearCart }) {
               <h3>Order Summary</h3>
               <div className="summary-row">
                 <span>Subtotal ({cartCount} items)</span>
-                <span>₹{(cartTotal + savings).toLocaleString()}</span>
+                <span>₹{(cartSubtotal + savings).toLocaleString()}</span>
               </div>
               <div className="summary-row discount">
                 <span>Discount</span>
                 <span>-₹{savings.toLocaleString()}</span>
               </div>
               <div className="summary-row">
-                <span>Delivery</span>
-                <span className="free">FREE</span>
+                <span>Price</span>
+                <span>₹{cartSubtotal.toLocaleString()}</span>
               </div>
+              <div className="summary-row">
+                <span>GST (18%)</span>
+                <span>+₹{gstAmount.toLocaleString()}</span>
+              </div>
+              <div className="summary-row">
+                <span>Delivery</span>
+                <span className="delivery-note">To be decided</span>
+              </div>
+              <p className="delivery-info">We will decide delivery charges and connect with you once the order is placed.</p>
               <div className="summary-divider"></div>
               <div className="summary-row total">
-                <span>Total</span>
+                <span>Total (incl. GST)</span>
                 <span>₹{cartTotal.toLocaleString()}</span>
               </div>
               <div className="summary-savings">
