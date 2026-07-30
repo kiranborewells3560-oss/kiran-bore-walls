@@ -64,6 +64,41 @@ body {
   color: #fff;
 }
 
+/* Install App Float Button */
+.install-float {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #008CD4;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.install-float:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent);
+}
+
+.install-float .install-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;

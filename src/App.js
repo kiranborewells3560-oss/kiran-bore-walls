@@ -18,10 +18,37 @@ function ScrollToTop() {
   return null;
 }
 
+// Store install prompt globally
+let deferredPrompt = null;
+
 function App() {
   const [cart, setCart] = useState([]);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const [showInstall, setShowInstall] = useState(false);
+
+  // Listen for PWA install prompt
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      setShowInstall(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setShowInstall(false);
+    }
+    deferredPrompt = null;
+  };
 
   const addToCart = (product) => {
     setCart(prev => {
@@ -97,6 +124,18 @@ function App() {
         </main>
 
         <Footer />
+
+        {/* Install App Button */}
+        {showInstall && (
+          <button
+            className="install-float"
+            onClick={handleInstallClick}
+            title="Install App"
+          >
+            <img src="/Logo.png" alt="Kiran Bore Wells" className="install-logo" />
+            <span>App</span>
+          </button>
+        )}
 
         {/* WhatsApp Floating Button */}
         <a
