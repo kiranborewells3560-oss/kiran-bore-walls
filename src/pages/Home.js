@@ -135,6 +135,10 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                     <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
                       Select Package
                     </button>
+                  ) : product.id === 10 ? (
+                    <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
+                      Select Size
+                    </button>
                   ) : (
                     <button className="add-btn" onClick={() => addToCart(product)}>
                       Add to Cart

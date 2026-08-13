@@ -10,6 +10,7 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
   const [selectedMeters, setSelectedMeters] = useState(100);
+  const [selectedSize, setSelectedSize] = useState('1.25');
 
   const product = products.find(p => p.id === parseInt(id));
   const isInCart = cart.some(item => item.id === parseInt(id) || String(item.id).startsWith(`${id}-`));
@@ -63,6 +64,16 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
         mrp: Math.round(cableFullSetPrices[selectedMeters] * 1.1)
       };
       addToCart(cableSetProduct);
+    } else if (product.id === 10) {
+      // Moon Lock - add with size info
+      const moonLockProduct = {
+        ...product,
+        id: `10-${selectedSize}`,
+        name: `Moon Lock (${selectedSize}-inch)`,
+        price: product.price,
+        mrp: product.mrp
+      };
+      addToCart(moonLockProduct);
     } else {
       for (let i = 0; i < qty; i++) {
         addToCart(product);
@@ -207,6 +218,23 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
                   <option value={250}>250 mtr cable with full set - ₹25,600</option>
                   <option value={300}>300 mtr cable with full set - ₹28,500</option>
                   <option value={400}>400 mtr cable with full set - ₹33,800</option>
+                </select>
+              </div>
+            )}
+
+            {/* Size selector for Moon Lock */}
+            {product.id === 10 && (
+              <div className="meter-selector">
+                <label>Select Size:</label>
+                <select
+                  value={selectedSize}
+                  onChange={(e) => setSelectedSize(e.target.value)}
+                  className="meter-dropdown"
+                >
+                  <option value="1.25">1.25 inch - ₹{product.price.toLocaleString()}</option>
+                  <option value="1.5">1.5 inch - ₹{product.price.toLocaleString()}</option>
+                  <option value="2">2 inch - ₹{product.price.toLocaleString()}</option>
+                  <option value="2.5">2.5 inch - ₹{product.price.toLocaleString()}</option>
                 </select>
               </div>
             )}
