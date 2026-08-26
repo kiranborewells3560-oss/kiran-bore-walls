@@ -11,6 +11,10 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
   const [showVideo, setShowVideo] = useState(false);
   const [selectedMeters, setSelectedMeters] = useState(100);
   const [selectedSize, setSelectedSize] = useState('1.25');
+  const [selectedSpannerSize, setSelectedSpannerSize] = useState('27');
+  const [selectedCutterSize, setSelectedCutterSize] = useState('2');
+  const [selectedCollarSize, setSelectedCollarSize] = useState('4');
+  const [selectedCasingSize, setSelectedCasingSize] = useState('5');
 
   const product = products.find(p => p.id === parseInt(id));
   const isInCart = cart.some(item => item.id === parseInt(id) || String(item.id).startsWith(`${id}-`));
@@ -43,6 +47,9 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
     400: 35800
   };
 
+  const collarPrices = { '4': 3000, '5': 4000, '6': 5000 };
+  const casingLockPrices = { '5': 3500, '6': 3500, '7': 3800, '8': 4000 };
+
   const handleAddToCart = () => {
     if (product.id === 19) {
       // Camera Cable - add with meters info, unique ID for each meter variant
@@ -74,6 +81,46 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
         mrp: product.mrp
       };
       addToCart(moonLockProduct);
+    } else if (product.id === 38) {
+      // Spanner - 27mm/32mm
+      const spannerProduct = {
+        ...product,
+        id: `38-${selectedSpannerSize}`,
+        name: `Spanner ${selectedSpannerSize}mm`,
+        price: 400,
+        mrp: 500
+      };
+      addToCart(spannerProduct);
+    } else if (product.id === 39) {
+      // Column Pipe Cutter - 2/2.5 inch
+      const cutterProduct = {
+        ...product,
+        id: `39-${selectedCutterSize}`,
+        name: `Column Pipe Cutter ${selectedCutterSize} inch`,
+        price: 3000,
+        mrp: 3600
+      };
+      addToCart(cutterProduct);
+    } else if (product.id === 40) {
+      // Collar - 4/5/6 inch
+      const collarProduct = {
+        ...product,
+        id: `40-${selectedCollarSize}`,
+        name: `Collar ${selectedCollarSize} inch`,
+        price: collarPrices[selectedCollarSize],
+        mrp: Math.round(collarPrices[selectedCollarSize] * 1.2)
+      };
+      addToCart(collarProduct);
+    } else if (product.id === 41) {
+      // Casing Lock - 5/6/7/8 inch
+      const casingProduct = {
+        ...product,
+        id: `41-${selectedCasingSize}`,
+        name: `Casing Lock ${selectedCasingSize} inch`,
+        price: casingLockPrices[selectedCasingSize],
+        mrp: Math.round(casingLockPrices[selectedCasingSize] * 1.2)
+      };
+      addToCart(casingProduct);
     } else {
       for (let i = 0; i < qty; i++) {
         addToCart(product);
@@ -235,6 +282,69 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
                   <option value="1.5">1.5 inch - ₹{product.price.toLocaleString()}</option>
                   <option value="2">2 inch - ₹{product.price.toLocaleString()}</option>
                   <option value="2.5">2.5 inch - ₹{product.price.toLocaleString()}</option>
+                </select>
+              </div>
+            )}
+
+            {/* Size selector for Spanner (27mm/32mm) */}
+            {product.id === 38 && (
+              <div className="meter-selector">
+                <label>Select Size:</label>
+                <select
+                  value={selectedSpannerSize}
+                  onChange={(e) => setSelectedSpannerSize(e.target.value)}
+                  className="meter-dropdown"
+                >
+                  <option value="27">27mm - ₹400</option>
+                  <option value="32">32mm - ₹400</option>
+                </select>
+              </div>
+            )}
+
+            {/* Size selector for Column Pipe Cutter */}
+            {product.id === 39 && (
+              <div className="meter-selector">
+                <label>Select Size:</label>
+                <select
+                  value={selectedCutterSize}
+                  onChange={(e) => setSelectedCutterSize(e.target.value)}
+                  className="meter-dropdown"
+                >
+                  <option value="2">2 inch - ₹3,000</option>
+                  <option value="2.5">2.5 inch - ₹3,000</option>
+                </select>
+              </div>
+            )}
+
+            {/* Size selector for Collar (4/5/6 inch) */}
+            {product.id === 40 && (
+              <div className="meter-selector">
+                <label>Select Size:</label>
+                <select
+                  value={selectedCollarSize}
+                  onChange={(e) => setSelectedCollarSize(e.target.value)}
+                  className="meter-dropdown"
+                >
+                  <option value="4">4 inch - ₹3,000</option>
+                  <option value="5">5 inch - ₹4,000</option>
+                  <option value="6">6 inch - ₹5,000</option>
+                </select>
+              </div>
+            )}
+
+            {/* Size selector for Casing Lock (5/6/7/8 inch) */}
+            {product.id === 41 && (
+              <div className="meter-selector">
+                <label>Select Size:</label>
+                <select
+                  value={selectedCasingSize}
+                  onChange={(e) => setSelectedCasingSize(e.target.value)}
+                  className="meter-dropdown"
+                >
+                  <option value="5">5 inch - ₹3,500</option>
+                  <option value="6">6 inch - ₹3,500</option>
+                  <option value="7">7 inch - ₹3,800</option>
+                  <option value="8">8 inch - ₹4,000</option>
                 </select>
               </div>
             )}

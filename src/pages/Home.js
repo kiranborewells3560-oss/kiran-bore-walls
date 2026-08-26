@@ -135,7 +135,7 @@ function Home({ filter, setFilter, search, cart, addToCart, removeFromCart }) {
                     <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
                       Select Package
                     </button>
-                  ) : product.id === 10 ? (
+                  ) : product.id === 10 || product.id === 38 || product.id === 39 || product.id === 40 || product.id === 41 ? (
                     <button className="add-btn" onClick={() => navigate(`/product/${product.id}`)}>
                       Select Size
                     </button>
