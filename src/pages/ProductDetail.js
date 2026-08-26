@@ -35,12 +35,12 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
     .slice(0, 4);
 
   const cableFullSetPrices = {
-    100: 17500,
-    150: 20000,
-    200: 22800,
-    250: 25600,
-    300: 28500,
-    400: 33800
+    100: 18000,
+    150: 20750,
+    200: 23800,
+    250: 26850,
+    300: 30000,
+    400: 35800
   };
 
   const handleAddToCart = () => {
@@ -212,12 +212,12 @@ function ProductDetail({ cart, addToCart, removeFromCart }) {
                   onChange={(e) => setSelectedMeters(Number(e.target.value))}
                   className="meter-dropdown"
                 >
-                  <option value={100}>100 mtr cable with full set - ₹17,500</option>
-                  <option value={150}>150 mtr cable with full set - ₹20,000</option>
-                  <option value={200}>200 mtr cable with full set - ₹22,800</option>
-                  <option value={250}>250 mtr cable with full set - ₹25,600</option>
-                  <option value={300}>300 mtr cable with full set - ₹28,500</option>
-                  <option value={400}>400 mtr cable with full set - ₹33,800</option>
+                  <option value={100}>100 mtr cable with full set - ₹18,000</option>
+                  <option value={150}>150 mtr cable with full set - ₹20,750</option>
+                  <option value={200}>200 mtr cable with full set - ₹23,800</option>
+                  <option value={250}>250 mtr cable with full set - ₹26,850</option>
+                  <option value={300}>300 mtr cable with full set - ₹30,000</option>
+                  <option value={400}>400 mtr cable with full set - ₹35,800</option>
                 </select>
               </div>
             )}
